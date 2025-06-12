@@ -1,0 +1,50 @@
+{
+  "name": "wescl/vianashop",
+  "version": "1.0.0",
+  "description": "A simple shop system",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "app\\": "src/backend/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Wescley Andrade"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.0",
+    "yiisoft/yii2": "^2.0.45",
+    "yidas/yii2-bower-asset": "^2.0.13",
+    "vlucas/phpdotenv": "^5.6",
+    "sizeg/yii2-jwt": "^1.2",
+    "firebase/php-jwt": "^6.11"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  },
+  "scripts": {
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "concurrently \"cd src/frontend && npm start\" \"cd src/backend && php -S localhost:8080 -t web\""
+    ],
+    "start-backend": [
+      "Composer\\Config::disableProcessTimeout",
+      "cd src/backend && php -S localhost:8080 -t web"
+    ],
+    "start-frontend": "cd src/frontend && npm start --dev",
+    "build": "cd src/frontend && npm run build",
+    "post-install-cmd": [
+      "cd src/frontend && npm install"
+    ]
+  }
+}
