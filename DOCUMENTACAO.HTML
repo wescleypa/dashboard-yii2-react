@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VianaShop - Documentação</title>
+  <style>
+    :root {
+      --primary: #4a6bdf;
+      --secondary: #6c757d;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --info: #17a2b8;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .presentation-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      color: var(--secondary);
+      font-size: 1.2rem;
+    }
+
+    .badges {
+      margin: 1rem 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .slide {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .slide-header {
+      background: linear-gradient(135deg, var(--primary), #2a52be);
+      color: white;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .slide-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .slide-body {
+      padding: 1.5rem;
+    }
+
+    .code-block {
+      background: #f8f9fa;
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: auto;
+      border-radius: 0 5px 5px 0;
+      margin: 1rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .grid-item {
+      background: var(--light);
+      padding: 1rem;
+      border-radius: 5px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .file-structure {
+      font-family: monospace;
+      line-height: 1.8;
+    }
+
+    .file-structure .folder {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .file-structure .file {
+      color: var(--dark);
+    }
+
+    .endpoint {
+      background: #f0f4f8;
+      padding: 0.75rem;
+      border-radius: 5px;
+      margin: 0.5rem 0;
+      font-family: monospace;
+    }
+
+    .method-get {
+      color: var(--success);
+    }
+
+    .method-post {
+      color: var(--primary);
+    }
+
+    .method-put {
+      color: var(--warning);
+    }
+
+    .method-delete {
+      color: var(--danger);
+    }
+
+    .env-vars {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .env-var {
+      background: #f0f4f8;
+      padding: 0.75rem;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="presentation-container">
+    <div class="header">
+      <h1>VianaShop</h1>
+      <p>Sistema de Gestão com Yii2 (Backend) + React (Frontend)</p>
+
+      <div class="badges">
+        <span class="badge" style="background-color: var(--success);">Yii2 2.0.48</span>
+        <span class="badge" style="background-color: var(--primary);">React 18.x</span>
+        <span class="badge" style="background-color: var(--warning);">RESTful API</span>
+        <span class="badge" style="background-color: var(--info);">MySQL 5.7+</span>
+      </div>
+    </div>
+
+    <!-- Visão Geral -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>📌 Visão Geral</h2>
+      </div>
+      <div class="slide-body">
+        <p>Sistema simples com:</p>
+        <ul>
+          <li>Autenticação JWT</li>
+          <li>CRUD de usuários/clientes e produtos</li>
+          <li>Relatórios gráficos e estatísticas</li>
+          <li>Exportação para PDF/Excel</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Autenticação -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>🔐 Autenticação</h2>
+      </div>
+      <div class="slide-body">
+        <p>Rotas protegidas por JWT:</p>
+        <div class="code-block">
+          Headers: { "Authorization": "Bearer &lt;token&gt;" }
+        </div>
+
+        <div class="endpoint">
+          <span class="method-post">POST</span> /user/login - Gera token
+        </div>
+        <div class="endpoint">
+          <span class="method-post">POST</span> /user/login-with-token - Login com token
+        </div>
+
+        <p>Principais endpoints:</p>
+        <div class="code-block">
+          YII2 -> product<br>
+          YII2 -> client<br>
+          YII2 -> user<br>
+          YII2 -> report<br>
+          YII2 -> customer-product<br><br>
+
+          POST: Create<br>
+          PUT: Update<br>
+          DELETE: Delete<br>
+          GET: List
+        </div>
+      </div>
+    </div>
+
+    <!-- Estrutura de Arquivos -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>📦 Estrutura de Arquivos</h2>
+      </div>
+      <div class="slide-body">
+        <div class="file-structure">
+          <div class="folder">vianashop/</div>
+          <div class="folder">├── backend/ # Código backend (API)</div>
+          <div class="folder">│ ├── components/ # Componentes</div>
+          <div class="folder">│ │ ├── JwtHelper # Gerenciamento de tokens (JWT)</div>
+          <div class="folder">│ │ ├── JwtHttp # Gerenciamento de sessoes (JWT)</div>
+          <div class="folder">│ ├── config/ # Configuracoes</div>
+          <div class="folder">│ │ ├── db # Configuracao MySQl</div>
+          <div class="folder">│ │ ├──web # Configuracao WEB (rotas e controllers)</div>
+          <div class="folder">│ ├── controller/ # Controladores</div>
+          <div class="folder">│ └── models/ # Modelos de busca</div>
+          <div class="folder">│</div>
+          <div class="folder">└── frontend/</div>
+          <div class="folder"> ├── public/ # Arquivos estáticos</div>
+          <div class="folder"> └── src/</div>
+          <div class="folder"> ├── components/ # Componentes reutilizáveis</div>
+          <div class="folder"> ├── hooks/ # Hooks customizados</div>
+          <div class="folder"> ├── pages/ # Páginas da aplicação</div>
+          <div class="folder"> ├── providers/ # Providers de contexto</div>
+          <div class="folder"> ├── services/ # Serviços auxiliares</div>
+          <div class="folder"> ├── themes/ # Configurações de tema</div>
+          <div class="file"> ├── Pages.js # Listagem de páginas dinâmicas</div>
+          <div class="file"> ├── App.js # Componente raiz</div>
+          <div class="file"> └── index.js # Ponto de entrada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variáveis de Ambiente -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>Variáveis de Ambiente</h2>
+      </div>
+      <div class="slide-body">
+        <p>Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env</p>
+
+        <div class="env-vars">
+          <div class="env-var">API_URL</div>
+          <div class="env-var">FRONT_URL</div>
+          <div class="env-var">JWT_KEY</div>
+          <div class="env-var">DB_URL</div>
+          <div class="env-var">DB_NAME</div>
+          <div class="env-var">DB_USER</div>
+          <div class="env-var">DB_PASS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instalação -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>🛠️ Instalação</h2>
+      </div>
+      <div class="slide-body">
+        <div class="code-block">
+          composer install
+        </div>
+
+        <h3>Inicialização</h3>
+        <div class="code-block">
+          composer run start
+        </div>
+      </div>
+    </div>
+
+    <!-- Desafios -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>😪 Desafios</h2>
+      </div>
+      <div class="slide-body">
+        <ul>
+          <li>Teclado (literalmente)</li>
+          <li>CORS nas rotas YII2</li>
+          <li>Buscas complexas com YII2</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quem sou eu -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>🙃 Quem sou eu?</h2>
+      </div>
+      <div class="slide-body">
+        <p>Souwescley.com</p>
+      </div>
+    </div>
+
+    <!-- Licença -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>📄 Licença</h2>
+      </div>
+      <div class="slide-body">
+        <p>MIT</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-header">
+        <h2>📄 Consulta que normalmente eu faria se nao fosse YII2</h2>
+      </div>
+      <div class="slide-body">
+        <div class="code-block">
+        SELECT * FROM products ORDER BY id DESC LIMIT 10;<br />
+        UPDATE products SET `name` = 'Product Name' WHERE id = ?;<br />
+        INSERT INT products (columns) VALUES (?);<br /><br />
+
+        -- RELATION<br />
+        SELECT<br />
+        cp.id as relation_id,<br />
+        client.id as client_id,<br />
+        client.name as client_name,<br />
+        product.name as product_name,<br />
+        product.id as product_id<br />
+        FROM customer_products cp<br />
+        LEFT JOIN clients client on client.id = cp.client<br />
+        LEFT JOIN products product ON product.id = cp.product<br /><br />
+
+        -- OR IN JSON WITH ALL PRODUCTS BUT 1 ROW BY CLIENT --<br />
+        SELECT<br />
+        client.id as client_id,<br />
+        client.name as client_name,<br />
+        JSON_ARRAYAGG(<br />
+        JSON_OBJECT(<br />
+        'relation_id', cp.id,<br />
+        'product_id', product.id,<br />
+        'product_name', product.name<br />
+        )<br />
+        ) as products<br />
+        FROM customer_products cp<br />
+        LEFT JOIN clients client ON client.id = cp.client<br />
+        LEFT JOIN products product ON product.id = cp.product<br />
+        GROUP BY client.id, client.name;
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Documentação do Projeto VianaShop - 2025</p>
+    </div>
+  </div>
+</body>
+
+</html>
